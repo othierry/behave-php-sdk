@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Behave-php-sdk by othierry</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Behave-php-sdk</h1>
+        <p class="header">Behave.io PHP SDK</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/othierry/behave-php-sdk/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/othierry/behave-php-sdk/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/othierry/behave-php-sdk">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/othierry">othierry</a></p>
+
+
+      </header>
+      <section>
+        <h3>
+<a name="behave-php-sdk" class="anchor" href="#behave-php-sdk"><span class="octicon octicon-link"></span></a>Behave PHP SDK</h3>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+
+<div class="highlight highlight-php"><pre><span class="k">require_once</span><span class="p">(</span><span class="s2">"behave.php"</span><span class="p">);</span>
+
+<span class="nx">Behave</span><span class="o">::</span><span class="na">init</span><span class="p">(</span><span class="s2">"YOUR_API_SECRET);</span>
+</pre></div>
+
+<h2>
+<a name="identify" class="anchor" href="#identify"><span class="octicon octicon-link"></span></a>Identify</h2>
+
+<div class="highlight highlight-php"><pre><span class="nv">$player</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">identify</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'email'</span>   <span class="o">=&gt;</span> <span class="s1">'olivier@behave.io'</span><span class="p">,</span>
+  <span class="s1">'name'</span>    <span class="o">=&gt;</span> <span class="s1">'Olivier Thierry'</span><span class="p">,</span>
+  <span class="s1">'picture'</span> <span class="o">=&gt;</span> <span class="s1">'http://url_to_picture'</span>  
+<span class="p">));</span>
+</pre></div>
+
+<h2>
+<a name="tracking-behaviors" class="anchor" href="#tracking-behaviors"><span class="octicon octicon-link"></span></a>Tracking Behaviors</h2>
+
+<h3>
+<a name="simple-tracking" class="anchor" href="#simple-tracking"><span class="octicon octicon-link"></span></a>Simple tracking</h3>
+
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">track</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="s2">"login"</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="contextual-tracking" class="anchor" href="#contextual-tracking"><span class="octicon octicon-link"></span></a>Contextual tracking</h3>
+
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">track</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="s2">"coment-tvshow"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'tvShow'</span>  <span class="o">=&gt;</span> <span class="mi">24</span><span class="p">,</span>
+  <span class="s1">'episode'</span> <span class="o">=&gt;</span> <span class="mi">11</span>
+<span class="p">));</span>
+</pre></div>
+
+<h2>
+<a name="tracking-results" class="anchor" href="#tracking-results"><span class="octicon octicon-link"></span></a>Tracking results</h2>
+
+<p>Every tracking event returns "user's actions result object"</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">track</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="s2">"login"</span><span class="p">);</span>
+
+<span class="c1">// returns the unlocked badge (if any, null otherwise)</span>
+<span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">badge</span>
+
+<span class="c1">// returns the points earned for that action (if any, 0 otherwise)</span>
+<span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">points</span>
+
+<span class="c1">// returns learboards activities (if something happened)</span>
+<span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">leaderboards</span>
+</pre></div>
+
+<h2>
+<a name="leaderboards" class="anchor" href="#leaderboards"><span class="octicon octicon-link"></span></a>Leaderboards</h2>
+
+<h3>
+<a name="getting-a-leaderboard-current-results" class="anchor" href="#getting-a-leaderboard-current-results"><span class="octicon octicon-link"></span></a>Getting a leaderboard current results</h3>
+
+<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="getting-a-leaderboard-previous-results" class="anchor" href="#getting-a-leaderboard-previous-results"><span class="octicon octicon-link"></span></a>Getting a leaderboard previous results</h3>
+
+<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardPreviousResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="creating-a-new-leaderboard" class="anchor" href="#creating-a-new-leaderboard"><span class="octicon octicon-link"></span></a>Creating a new leaderboard</h3>
+
+<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
+  <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
+  <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
+  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
+  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults</span>
+<span class="p">));</span>
+</pre></div>
+
+<p>You can also bind rewards to that leaderboard (So it becomes a contest).
+Rewards are like Badges. Each reward defines the position in the leaderboard to who this rewards should be given and the Badge that it refers to.</p>
+
+<p>You can define contest leaderboard this way.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
+  <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
+  <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
+  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
+  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// Defaults</span>
+  <span class="s1">'rewards'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'badge'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-id-or-original-id'</span><span class="p">)</span>
+  <span class="p">),</span>
+<span class="p">));</span>
+</pre></div>
+
+<h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
+
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
