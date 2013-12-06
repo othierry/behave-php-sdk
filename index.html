@@ -201,7 +201,7 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <a name="leaderboards" class="anchor" href="#leaderboards"><span class="octicon octicon-link"></span></a>Leaderboards</h2>
 
 <h3>
-<a name="getting-a-leaderboard-current-results" class="anchor" href="#getting-a-leaderboard-current-results"><span class="octicon octicon-link"></span></a>Getting a leaderboard current results</h3>
+<a name="getting-leaderboard-current-results" class="anchor" href="#getting-leaderboard-current-results"><span class="octicon octicon-link"></span></a>Getting leaderboard current results</h3>
 
 <p>You can fetch the actual results of any leaderboard at anytime. <strong>The result is an array sorted by score ascending</strong></p>
 
@@ -243,7 +243,7 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 </pre></div>
 
 <h3>
-<a name="getting-a-leaderboard-previous-results" class="anchor" href="#getting-a-leaderboard-previous-results"><span class="octicon octicon-link"></span></a>Getting a leaderboard previous results</h3>
+<a name="getting-leaderboard-previous-results" class="anchor" href="#getting-leaderboard-previous-results"><span class="octicon octicon-link"></span></a>Getting leaderboard previous results</h3>
 
 <p>For leaderboard with a timeframe other than "alltime" keep a copy of the previous leaderboard results, before it was reset to 0. (e.g A daily leaderboard will keep the results of the previous day).</p>
 
@@ -251,7 +251,7 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 </pre></div>
 
 <h3>
-<a name="creating-a-new-leaderboard" class="anchor" href="#creating-a-new-leaderboard"><span class="octicon octicon-link"></span></a>Creating a new leaderboard</h3>
+<a name="creating-a-leaderboard" class="anchor" href="#creating-a-leaderboard"><span class="octicon octicon-link"></span></a>Creating a leaderboard</h3>
 
 <div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
