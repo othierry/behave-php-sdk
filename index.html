@@ -65,7 +65,38 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <span class="p">));</span>
 </pre></div>
 
-<h3>
+<p>the returned Player has the following attributes</p>
+
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>_id</td>
+<td align="center">String</td>
+<td align="right">The id of the Player</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td align="center">String</td>
+<td align="right">The custom id use have use in <code>identify()</code>
+</td>
+</tr>
+<tr>
+<td>points</td>
+<td align="center">Number</td>
+<td align="right">The number of points of the player (if any, 0 otherwise)</td>
+</tr>
+<tr>
+<td>traits</td>
+<td align="center">Object</td>
+<td align="right">The custom traits you have given too the player</td>
+</tr>
+</tbody>
+</table><h3>
 <a name="other-identities-social" class="anchor" href="#other-identities-social"><span class="octicon octicon-link"></span></a>Other Identities (Social)</h3>
 
 <p>You can add and remove identities from different providers (facebook, twitter, yammer) to your players.
@@ -128,12 +159,12 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <tr>
 <td>points</td>
 <td align="center">Object</td>
-<td align="right">The points earned for that action (if any, 0 otherwise)</td>
+<td align="right">With 2 attributes: <code>earned</code> and <code>balance</code>. <code>earned</code> is the number of points the user earned by taking the action or 0 if no points earned, <code>balance</code> is the updated balance of the player points</td>
 </tr>
 <tr>
 <td>leaderboards</td>
-<td align="center">Array[LeaderboardResults]</td>
-<td align="right">Leaderboard updates (if any,  empty otherwise)</td>
+<td align="center">Array[Object]</td>
+<td align="right">Leaderboard updates (if any,  empty otherwise). See bellow for detailed structure</td>
 </tr>
 </tbody>
 </table><p>Example accessing <code>$bhResults-&gt;points</code> attribute.</p>
@@ -253,7 +284,7 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <h3>
 <a name="creating-a-leaderboard" class="anchor" href="#creating-a-leaderboard"><span class="octicon octicon-link"></span></a>Creating a leaderboard</h3>
 
-<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
@@ -267,7 +298,7 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
 <p>You can define contest leaderboard this way.</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
