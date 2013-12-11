@@ -30,19 +30,19 @@
 
       </header>
       <section>
-        <h3>
-<a name="behave-php-sdk" class="anchor" href="#behave-php-sdk"><span class="octicon octicon-link"></span></a>Behave PHP SDK</h3>
-
-<h2>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+        <h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
 <p>Our PHP library lets you easily identify your users, track their behaviours and make full use of the API.
 The SDK also allows you to dynamically create and remove leaderboards, contests, badges, retrieve leaderboard results etc...</p>
 
-<h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h1>
 
-<div class="highlight highlight-php"><pre><span class="k">require_once</span><span class="p">(</span><span class="s2">"behave.php"</span><span class="p">);</span>
+<pre><code>$ git clone ...
+</code></pre>
+
+<div class="highlight highlight-php"><pre><span class="k">require_once</span><span class="p">(</span><span class="s2">"Behave.php"</span><span class="p">);</span>
 
 <span class="nx">Behave</span><span class="o">::</span><span class="na">init</span><span class="p">(</span><span class="s2">"YOUR_API_SECRET);</span>
 </pre></div>
@@ -88,36 +88,18 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <tr>
 <td>points</td>
 <td align="center">Number</td>
-<td align="right">The number of points of the player (if any, 0 otherwise)</td>
+<td align="right">The number of points of the player (default to 0)</td>
 </tr>
 <tr>
 <td>traits</td>
 <td align="center">Object</td>
-<td align="right">The custom traits you have given too the player</td>
+<td align="right">The custom traits you have given to the player</td>
 </tr>
 </tbody>
-</table><h3>
-<a name="other-identities-social" class="anchor" href="#other-identities-social"><span class="octicon octicon-link"></span></a>Other Identities (Social)</h3>
-
-<p>You can add and remove identities from different providers (facebook, twitter, yammer) to your players.
-Adding identities from providers allow us to fetch default data (name, picture) ONLY if authorised (we do not ask for additional permissions).</p>
-
-<p>In order to use social features, you need to add provider credentials <a href="http://dashboard.behave.io/settings">to your app settings</a> (e.g: Facebook App Id, etc...)</p>
-
-<p>For example, if you want to add facebook identity to the player 42</p>
-
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">addIdentity</span><span class="p">(</span><span class="s1">'42'</span><span class="p">,</span> <span class="s1">'414214'</span><span class="p">,</span> <span class="s1">'facebook'</span><span class="p">);</span>
-</pre></div>
-
-<p>To remove an identity:</p>
-
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">removeIdentity</span><span class="p">(</span><span class="s1">'42'</span><span class="p">,</span> <span class="s1">'facebook'</span><span class="p">);</span>
-</pre></div>
-
-<h2>
+</table><h2>
 <a name="behaviours" class="anchor" href="#behaviours"><span class="octicon octicon-link"></span></a>Behaviours</h2>
 
-<p>You need to track your players behaviours if you want to reward them for doing so. Tracking can be either simple or contextual. You can specify ANY key value pairs to describe the context the behaviour was taken. </p>
+<p>You need to track your players behaviours if you want to reward them for doing so. Tracking can be either <strong>simple</strong> or <strong>contextual</strong>. You can specify ANY key value pairs to describe the context to which the behaviour was taken. </p>
 
 <h3>
 <a name="simple-tracking" class="anchor" href="#simple-tracking"><span class="octicon octicon-link"></span></a>Simple tracking</h3>
@@ -137,12 +119,12 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <h3>
 <a name="tracking-results" class="anchor" href="#tracking-results"><span class="octicon octicon-link"></span></a>Tracking results</h3>
 
-<p>When you track a user behaviours using <code>track()</code> you get back a result object you can use. The result contains the actions that the tracking has trigger (from your <a href="http://dashboard.behave.io/recipes">recipes</a>).</p>
+<p>When you track a user behaviours using <code>Behave::track()</code> you get back a result object you can use. The result contains the actions that the tracking has triggered (from your <a href="http://dashboard.behave.io/recipes">recipes</a>).</p>
 
 <div class="highlight highlight-php"><pre><span class="nv">$bhResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">track</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="s2">"check-in"</span><span class="p">);</span>
 </pre></div>
 
-<p>The results contains 3 attributes.</p>
+<p>The results <strong>always contains 3 attributes</strong>.</p>
 
 <table>
 <thead><tr>
@@ -153,7 +135,7 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <tbody>
 <tr>
 <td>badge</td>
-<td align="center">Badge</td>
+<td align="center">Object</td>
 <td align="right">The unlocked badge (if any, null otherwise)</td>
 </tr>
 <tr>
@@ -192,16 +174,14 @@ Adding identities from providers allow us to fetch default data (name, picture) 
     <span class="s2">"badge"</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="c1">// Badge id</span>
       <span class="s2">"_id"</span>          <span class="o">=&gt;</span> <span class="s2">"529fff2356ce248366000006"</span>
+      <span class="c1">// Badge custom id you have defined, null otherwise</span>
+      <span class="s2">"reference_id"</span> <span class="o">=&gt;</span> <span class="s2">"deloitte-newbie-badge"</span>
       <span class="c1">// badge name</span>
       <span class="s2">"name"</span>         <span class="o">=&gt;</span> <span class="s2">"Deloitte Newbie"</span>
-      <span class="c1">// Badge custom id you have defnied</span>
-      <span class="s2">"reference_id"</span> <span class="o">=&gt;</span> <span class="s2">"42-newbie"</span>
-      <span class="c1">// If badge not active, it cannot be unlocked</span>
-      <span class="s2">"active"</span>       <span class="o">=&gt;</span> <span class="k">true</span>
-      <span class="c1">// If unique, a player can unlock this badge ONLY ONCE</span>
-      <span class="s2">"unique"</span>       <span class="o">=&gt;</span> <span class="k">false</span>
-      <span class="c1">// the badge can be unlocked in total, 0 means unlimited.</span>
-      <span class="s2">"limit"</span>        <span class="o">=&gt;</span> <span class="mi">0</span>
+      <span class="c1">// badge hint</span>
+      <span class="s2">"hint"</span>         <span class="o">=&gt;</span> <span class="s2">"Check-in 2 times at Deloitte"</span>
+      <span class="c1">// badge unlock message</span>
+      <span class="s2">"message"</span>      <span class="o">=&gt;</span> <span class="s2">"Whooa! Look like you are new in da place. keep the effort and you will be rewarded."</span>
     <span class="p">}</span>
   <span class="p">}</span>
 </pre></div>
@@ -213,17 +193,15 @@ Adding identities from providers allow us to fetch default data (name, picture) 
   <span class="p">{</span>
      <span class="c1">// The updated leaderboard</span>
      <span class="s1">'leaderboard'</span>      <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="s1">'id'</span><span class="o">=&gt;</span> <span class="s1">'529fff1156ce248366000006'</span><span class="p">,</span>
-        <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'custom-id-you-have-defined'</span>
+        <span class="s1">'_id'</span><span class="o">=&gt;</span> <span class="s1">'529fff1156ce248366000006'</span><span class="p">,</span>
+        <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'test-lb'</span>
      <span class="p">},</span>
      <span class="c1">// Player's position before the update</span>
      <span class="s1">'prev_position'</span>    <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span>
      <span class="c1">// Player's position after the update</span>
-     <span class="s1">'post_position     =&gt; 2,</span>
-<span class="s1">     // Player'</span><span class="nx">s</span> <span class="nx">updated</span> <span class="nx">score</span>
+     <span class="s1">'post_position'</span>    <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+     <span class="c1">// Player's updated score</span>
      <span class="s1">'score'</span>            <span class="o">=&gt;</span> <span class="mi">435</span><span class="p">,</span>
-     <span class="c1">// The players that have been defeated (3-&gt;5)</span>
-     <span class="s1">'defeated_players'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'player-custom-id1'</span><span class="p">,</span> <span class="s1">'player-custom-id2'</span><span class="p">,</span> <span class="s1">'player-custom-id3'</span><span class="p">]</span>
    <span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
@@ -234,19 +212,57 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <h3>
 <a name="getting-leaderboard-current-results" class="anchor" href="#getting-leaderboard-current-results"><span class="octicon octicon-link"></span></a>Getting leaderboard current results</h3>
 
-<p>You can fetch the actual results of any leaderboard at anytime. <strong>The result is an array sorted by score ascending</strong></p>
+<p>You can fetch the actual results of any leaderboard at anytime. Here is an example:</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">);</span>
+<div class="highlight highlight-php"><pre><span class="nv">$lbResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">);</span>
+<span class="c1">// or</span>
+<span class="nv">$lbResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
 </pre></div>
 
-<p>Results structure will look like this</p>
+<p>Available options are:</p>
+
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>page</td>
+<td align="center">Number</td>
+<td align="right">(Optional) The results page to fetch. Default is 1</td>
+</tr>
+<tr>
+<td>limit</td>
+<td align="center">Number</td>
+<td align="right">(Optional) The max number of results per page. MAXIMUM is 1000</td>
+</tr>
+<tr>
+<td>max</td>
+<td align="center">Number</td>
+<td align="right">(Optional) The maximum position to fetch, default is 0 =&gt; None</td>
+</tr>
+<tr>
+<td>players</td>
+<td align="center">Array[String]</td>
+<td align="right">(Optional) The players to include in the results, default is null =&gt; ALL</td>
+</tr>
+<tr>
+<td>positions</td>
+<td align="center">String</td>
+<td align="right">(Optional) The way positions are calculated. Possible values are <code>relative</code> and <code>absolute</code>. <code>relative</code> will set the positions according to the players that are included in the results, <code>absolute</code> will set the positions according to all the players in the leaderboards. This is useful when for example you want to fetch the results for a player and his friends only. In this situation you could pass <code>relative</code> so that the positions are computed between friends and not between all the players in the leaderboards.</td>
+</tr>
+</tbody>
+</table><p>Results structure will look like this</p>
 
 <div class="highlight highlight-php"><pre><span class="p">[</span>
   <span class="p">{</span>
-    <span class="c1">// Player score</span>
     <span class="s1">'score'</span>  <span class="o">=&gt;</span> <span class="mi">129</span><span class="p">,</span>
+    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">'player'</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="s1">'_id'</span> <span class="o">=&gt;</span> <span class="s2">"529fe03ecbd86b9d6c000002"</span><span class="p">,</span>
+      <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'42'</span><span class="p">,</span>
       <span class="s1">'traits'</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Olivier Thierry'</span>
         <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'olivier@behave.io'</span>
@@ -257,10 +273,11 @@ Adding identities from providers allow us to fetch default data (name, picture) 
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="p">{</span>
-    <span class="c1">// Player score</span>
     <span class="s1">'score'</span>  <span class="o">=&gt;</span> <span class="mi">102</span><span class="p">,</span>
+    <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
     <span class="s1">'player'</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="s1">'_id'</span> <span class="o">=&gt;</span> <span class="s2">"947pg03ecbd86b9d6c05520"</span><span class="p">,</span>
+      <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'43'</span><span class="p">,</span>
       <span class="s1">'traits'</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="s1">'name'</span>  <span class="o">=&gt;</span> <span class="s1">'Olivier Jeandel'</span>
         <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'jide@behave.io'</span>
@@ -276,22 +293,181 @@ Adding identities from providers allow us to fetch default data (name, picture) 
 <h3>
 <a name="getting-leaderboard-previous-results" class="anchor" href="#getting-leaderboard-previous-results"><span class="octicon octicon-link"></span></a>Getting leaderboard previous results</h3>
 
-<p>For leaderboard with a timeframe other than "alltime" keep a copy of the previous leaderboard results, before it was reset to 0. (e.g A daily leaderboard will keep the results of the previous day).</p>
+<p>When a leaderboard is reset (Either by calling Behave::resetLeaderboard() or by hitting the end of the leaderboard's timeframe), a copy of the previous leaderboard results is available (e.g A daily leaderboard will keep the results of the previous day).</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$leaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardPreviousResults</span><span class="p">(</span><span class="s1">'sample-leaderboard'</span><span class="p">);</span>
+<p>Here is how you can access it:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$prevLeaderboardResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardPreviousResults</span><span class="p">(</span><span class="s1">'test-lb'</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>The <strong>structure</strong> is identical to <code>Behave::fetchLeaderboardResults()</code>
+</li>
+<li>The <strong>options</strong> are identical to <code>Behave::fetchLeaderboardResults()</code>
+</li>
+</ul><h3>
+<a name="getting-leaderboard-result-for-a-specific-player" class="anchor" href="#getting-leaderboard-result-for-a-specific-player"><span class="octicon octicon-link"></span></a>Getting leaderboard result for a specific player</h3>
+
+<p>You can also fetch the result for a particular player, on a particular leaderboard. (<em>e.g What is the position of my user 42 on leaderboard test-lb</em>)</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$playerResult</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResultForPlayer</span><span class="p">(</span><span class="s1">'test-lb'</span><span class="p">,</span> <span class="s1">'42'</span><span class="p">);</span>
+<span class="p">{</span>
+  <span class="s1">'score'</span>    <span class="o">=&gt;</span> <span class="mi">438</span><span class="p">,</span>
+  <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">7</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="getting-leaderboard-results-for-a-specific-player" class="anchor" href="#getting-leaderboard-results-for-a-specific-player"><span class="octicon octicon-link"></span></a>Getting leaderboard results for a specific player</h3>
+
+<p>You can also fetch all the leaderboards the player is in, and get the results for that player.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$playerResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResultsForPlayer</span><span class="p">(</span><span class="s1">'42'</span><span class="p">);</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+     <span class="s1">'leaderboard'</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="s1">'_id'</span><span class="o">=&gt;</span> <span class="s1">'529fff1156ce248366000006'</span><span class="p">,</span>
+        <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'test-lb'</span>
+     <span class="p">},</span>
+     <span class="c1">// Player's position</span>
+     <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+     <span class="c1">// Player's updated score</span>
+     <span class="s1">'score'</span> <span class="o">=&gt;</span> <span class="mi">435</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+     <span class="s1">'leaderboard'</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="s1">'_id'</span><span class="o">=&gt;</span> <span class="s1">'876fff1156ce248366000367'</span><span class="p">,</span>
+        <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'another-test-lb'</span>
+     <span class="p">},</span>
+     <span class="c1">// Player's position</span>
+     <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">18</span><span class="p">,</span>
+     <span class="c1">// Player's updated score</span>
+     <span class="s1">'score'</span> <span class="o">=&gt;</span> <span class="mi">114</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+</pre></div>
+
+<p>You can pass an array of options as the second parameter (optional, see bellow for list of available options).</p>
+
+<p>For example, if I want to fetch all the leaderboard results for player 42 where he/she is in the top 3:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$playerResults</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResultsForPlayer</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'max'</span> <span class="o">=&gt;</span> <span class="mi">3</span> <span class="c1">// Max position</span>
+<span class="p">));</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+     <span class="s1">'leaderboard'</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="s1">'_id'</span><span class="o">=&gt;</span> <span class="s1">'529fff1156ce248366000006'</span><span class="p">,</span>
+        <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'test-lb'</span>
+     <span class="p">},</span>
+     <span class="c1">// Player's position</span>
+     <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+     <span class="c1">// Player's updated score</span>
+     <span class="s1">'score'</span> <span class="o">=&gt;</span> <span class="mi">435</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+<p>Available options are:</p>
+
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>leaderboards</td>
+<td align="center">Array[String]</td>
+<td align="right">(Optional) Leaderboards to process, if empty all the leaderboards will be processed.</td>
+</tr>
+<tr>
+<td>max</td>
+<td align="center">Number</td>
+<td align="right">(Optional) The maximum player position acceptance for the leaderboard to be selected.</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="iterating-leaderboard-results" class="anchor" href="#iterating-leaderboard-results"><span class="octicon octicon-link"></span></a>Iterating leaderboard results</h3>
+
+<p><code>Behave::fetchLeaderboardResults()</code> and <code>Behave::fetchLeaderboardPreviousResults()</code> are enough when you want to fetch 1 page of 1000 entries maximum. If you want to iterate trough more results for a leaderboards you can use <code>Behave::iterateLeaderboardResults()</code> and <code>Behave::iterateLeaderboardPreviousResults()</code> instead.</p>
+
+<ul>
+<li>The <strong>structure</strong> is identical to <code>Behave::fetchLeaderboardResults()</code>
+</li>
+<li>The <strong>options</strong> are identical to <code>Behave::fetchLeaderboardResults()</code>
+</li>
+</ul><p>Example:</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">iterateLeaderboardResults</span><span class="p">(</span><span class="s1">'test-lb'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$results</span><span class="p">,</span> <span class="nv">$page</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Use results</span>
+<span class="p">},</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span> <span class="c1">// Fetch by batch of 100</span>
+  <span class="s1">'max'</span>   <span class="o">=&gt;</span> <span class="mi">2500</span> <span class="c1">// Fetch the top 2500 players</span>
+<span class="p">));</span>
 </pre></div>
 
 <h3>
 <a name="creating-a-leaderboard" class="anchor" href="#creating-a-leaderboard"><span class="octicon octicon-link"></span></a>Creating a leaderboard</h3>
 
+<p>In case your app needs to dynamically create leaderboards. You can use the SDK to create or remove leaderboards.</p>
+
 <div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
-  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
+  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
   <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults</span>
 <span class="p">));</span>
 </pre></div>
+
+<p>Available parameters are:</p>
+
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>reference_id</td>
+<td align="center">String</td>
+<td align="right">(Optional) - A unique custom id you want to bind to this leaderboard (Optional)</td>
+</tr>
+<tr>
+<td>type</td>
+<td align="center">Number</td>
+<td align="right">(Optional) - Available values are <code>Behave::LEADERBOARD_TYPE_SCORE</code> and <code>Behave::LEADERBOARD_TYPE_BEHAVIOURAL</code>. Default is <code>Behave::LEADERBOARD_TYPE_BEHAVIOURAL</code>
+</td>
+</tr>
+<tr>
+<td>scoreType</td>
+<td align="center">Number</td>
+<td align="right">(Optional) - You can specify how the scores are computed, <code>Behave::LEADERBOARD_SCORE_SUM</code> will increment scores, <code>Behave::LEADERBOARD_SCORE_MAX</code> will keep the maximum score for a player and discard the other ones. Note that for is <code>Behave::LEADERBOARD_TYPE_BEHAVIOURAL</code> type, the scoring type will always be <code>Behave::LEADERBOARD_SCORE_SUM</code>
+</td>
+</tr>
+<tr>
+<td>timeFrame</td>
+<td align="center">Number</td>
+<td align="right">(Optional) - Specify how often the leaderboard should be reset. Possible values are: <code>Behave::LEADERBOARD_TIME_ALLTIME</code>, <code>Behave::LEADERBOARD_TIME_DAILY</code>, <code>Behave::LEADERBOARD_TIME_WEEKLY</code>, <code>Behave::LEADERBOARD_TIME_MONTHLY</code>. Default to <code>Behave::LEADERBOARD_TIME_ALLTIME</code>
+</td>
+</tr>
+<tr>
+<td>rewards</td>
+<td align="center">Array[Object]</td>
+<td align="right">Rewards for that leaderboard. See bellow for example</td>
+</tr>
+<tr>
+<td>active</td>
+<td align="center">Boolean</td>
+<td align="right">Is the leaderboard active? Default to true</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="creating-a-leaderboard-with-rewards" class="anchor" href="#creating-a-leaderboard-with-rewards"><span class="octicon octicon-link"></span></a>Creating a leaderboard with rewards</h3>
 
 <p>You can also bind rewards to a leaderboard (So it becomes a contest).
 Rewards are Badges. Each reward defines the position in the leaderboard to who this rewards should be given and the Badge that it refers to.</p>
@@ -302,7 +478,7 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
   <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
-  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
+  <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
   <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// Defaults</span>
   <span class="s1">'rewards'</span>      <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
     <span class="k">array</span><span class="p">(</span><span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'badge'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-id-or-original-id'</span><span class="p">)</span>
@@ -312,6 +488,8 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
 <h3>
 <a name="deleting-a-leaderboard" class="anchor" href="#deleting-a-leaderboard"><span class="octicon octicon-link"></span></a>Deleting a leaderboard</h3>
+
+<p>You can delete a leaderboard at anytime. <strong>THIS ACTION CANNOT BE UNDONE</strong></p>
 
 <div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">deleteLeaderboard</span><span class="p">(</span><span class="s1">'some-custom-id-or-original-id'</span><span class="p">);</span>
 </pre></div>
