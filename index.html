@@ -312,8 +312,8 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 
 <div class="highlight highlight-php"><pre><span class="nv">$playerResult</span> <span class="o">=</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">fetchLeaderboardResultForPlayer</span><span class="p">(</span><span class="s1">'test-lb'</span><span class="p">,</span> <span class="s1">'42'</span><span class="p">);</span>
 <span class="p">{</span>
-  <span class="s1">'score'</span>    <span class="o">=&gt;</span> <span class="mi">438</span><span class="p">,</span>
-  <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">7</span>
+  <span class="s1">'score'</span>    <span class="o">=&gt;</span> <span class="mi">435</span><span class="p">,</span>
+  <span class="s1">'position'</span> <span class="o">=&gt;</span> <span class="mi">2</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -404,7 +404,7 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">iterateLeaderboardResults</span><span class="p">(</span><span class="s1">'test-lb'</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$results</span><span class="p">,</span> <span class="nv">$page</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Use results</span>
 <span class="p">},</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span> <span class="c1">// Fetch by batch of 100</span>
+  <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span> <span class="c1">// Fetch by batches of 100</span>
   <span class="s1">'max'</span>   <span class="o">=&gt;</span> <span class="mi">2500</span> <span class="c1">// Fetch the top 2500 players</span>
 <span class="p">));</span>
 </pre></div>
