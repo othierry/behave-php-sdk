@@ -497,7 +497,7 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 <a name="reset-a-leaderboard" class="anchor" href="#reset-a-leaderboard"><span class="octicon octicon-link"></span></a>Reset a leaderboard</h3>
 
 <p>If a leaderboard's time frame is <code>Behave::LEADERBOARD_TIME_ALLTIME</code> you can manually reset it. 
-When you reset a leaderboard, the previous results are archived and are available using <code>Behave::fetchLeaderboardPreviousResults</code> or <code>Behave::iterateLeaderboardResults</code>.</p>
+When you reset a leaderboard, the previous results are archived and are available using <code>Behave::fetchLeaderboardPreviousResults()</code> or <code>Behave::iterateLeaderboardResults()</code>.</p>
 
 <div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">resetLeaderboard</span><span class="p">(</span><span class="s1">'game-level-42-lb'</span><span class="p">);</span>
 </pre></div>
