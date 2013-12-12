@@ -414,8 +414,8 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 
 <p>In case your app needs to dynamically create leaderboards. You can use the SDK to create or remove leaderboards.</p>
 
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
+<div class="highlight highlight-php"><pre><span class="c1">// influencers-lb is the reference_id we want to use</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="s1">'influencers-lb'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
   <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
@@ -433,9 +433,9 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 </tr></thead>
 <tbody>
 <tr>
-<td>reference_id</td>
-<td align="center">String</td>
-<td align="right">(Optional) - A unique custom id you want to bind to this leaderboard (Optional)</td>
+<td>(Optional)</td>
+<td align="center"></td>
+<td align="right"></td>
 </tr>
 <tr>
 <td>type</td>
@@ -474,8 +474,7 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
 <p>You can define contest leaderboard this way.</p>
 
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">'reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'some-custom-unique-id'</span><span class="p">,</span>
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="s1">'influencers-lb'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
   <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
