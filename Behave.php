@@ -200,7 +200,7 @@ class Behave {
     $limit   = array_key_exists('limit', $options) ? min($options['limit'], 1000) : 1000;
     $offset  = array_key_exists('page', $options)  ? ($options['page'] - 1) * $limit : 0;
     $max_pos = array_key_exists('max', $options)   ? $options['max'] : 0;
-    // if we want the 3 first players, we set the limit to maximum 3 instead of 1000
+    // if we want the 3 first players, we set the $limit to maximum $max_pos if greater
     if ($max_pos > 0 && $limit > $max_pos) {
       $limit = $max_pos;
     }
@@ -260,7 +260,7 @@ class Behave {
     // fire iterator
     $iterator($results, $page);
     // If still need to fetch more results
-    if ($resultsCount > 0 && ($max_pos === 0 || $total < $max_pos)) {
+    if ($resultsCount > 0 && $resultsCount === $limit && ($max_pos === 0 || $total < $max_pos)) {
       $options['page'] = ++$page;
       Behave::iterateLeaderboardResults($leaderboardId, $iterator, $options);              
     }
@@ -298,16 +298,17 @@ class Behave {
   /**
    * Create a new leaderboard
    *
-   * @param  string $name    The name of the leaderboard
+   * @param  string $name        The name of the leaderboard
+   * @param  string $referenceId The unique custom id you want to use to identify this leaderboard. REQUIRED when creating leaderboards from SDK
    * @param  mixed  $options Leaderboard options (optional)
    * @return mixed  (leaderboard) if success, string (error) if something went wrong
    */
-  public static function createLeaderboard($name, $options = array()) 
+  public static function createLeaderboard($name, $referenceId, $options = array()) 
   {
     Behave::raiseIfNotInitialized();
     $response = Behave::$instance->api('leaderboards', 'POST', array(
       'name'            => $name,
-      'reference_id'    => $options['reference_id'],
+      'reference_id'    => $referenceId,
       'type'            => $options['type'],
       'scoreType'       => $options['scoreType'],
       'timeFrame'       => $options['timeFrame'],
