@@ -9,7 +9,7 @@ class Behave {
   /**
    * API Root URL.
    */
-  const API_ROOT_URL                 = 'http://localhost:8080';
+  const API_ROOT_URL                 = 'http://api.behave.io';
 
   /**
    * Leaderboard types
