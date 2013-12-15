@@ -1,0 +1,23 @@
+{
+    "name": "behave/behave-api-sdk",
+    "homepage": "http://www.behave.io",
+    "description":"Behave API SDK for PHP",
+    "keywords":["behave","sdk","api","rest"],
+    "type":"library",
+    "license":"MIT",
+    "authors":[
+        {
+            "name":"Behave",
+            "homepage":"http://www.behave.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "guzzle/guzzle": ">=3.4.3,<4"
+    },
+    "autoload": {
+        "psr-0": {
+            "Behave": "src/"
+        }
+    }
+}
