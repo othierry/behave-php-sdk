@@ -86,7 +86,7 @@ class Behave {
   public static function identify($playerId, $traits = null) {
     return Behave::getClient()->identify(array(
       'playerId' => $playerId,
-      'traits'   => $traitsc
+      'traits'   => $traits
     ))->get('data');
   }
 

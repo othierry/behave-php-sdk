@@ -198,7 +198,7 @@ return array(
 		),
 
 		'resetLeaderboard' => array(
-			'httpMethod' => 'POST',
+			'httpMethod' => 'GET',
 			'uri' => "leaderboards{/leaderboardId}",
 			'summary' => 'Reset a leaderboard',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
