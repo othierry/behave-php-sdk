@@ -54,7 +54,7 @@ return array(
 		'fetchPlayerBadges' => array(
 			'httpMethod' => 'GET',
 			'uri' => "players{/playerId}/badges",
-			'summary' => 'Identify a user',
+			'summary' => 'Fetch player\'s unlocked badges',
 			'responseClass' => 'ArrayOutput',
 			'responseType' => 'model',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
@@ -114,7 +114,7 @@ return array(
 		'fetchLeaderboardResultsForPlayer' => array(
 			'httpMethod' => 'POST',
 			'uri' => "leaderboards/player-results",
-			'summary' => 'fetch Leaderboard Results For Player',
+			'summary' => 'Fetch leaderboard results for given player on given leaderboards (all by default)',
 			'responseClass' => 'ArrayOutput',
 			'responseType' => 'model',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
@@ -140,7 +140,7 @@ return array(
 
 		'fetchLeaderboardResultForPlayer' => array(
 			'extends' => 'fetchLeaderboardResultsForPlayer',
-			'summary' => 'Fetch leaderboard result for a user',
+			'summary' => 'Fetch leaderboard result for the given player on given leaderboards',
 			'parameters' => array(
 				'leaderboardId' => array(
 					'type' => 'string',
@@ -154,7 +154,7 @@ return array(
 		'createLeaderboard' => array(
 			'httpMethod' => 'POST',
 			'uri' => 'leaderboards',
-			'summary' => 'Returns a file’s properties.',
+			'summary' => 'Create a new leaderboard.',
 			'responseClass' => 'ObjectOutput',
 			'responseType' => 'model',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
@@ -175,11 +175,6 @@ return array(
 					'false' => true,
 				),
 				'timeFrame' => array(
-					'type' => 'string',
-					'location' => 'json',
-					'false' => true,
-				),
-				'statusUpdateUrl' => array(
 					'type' => 'string',
 					'location' => 'json',
 					'false' => true,
