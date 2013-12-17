@@ -83,10 +83,11 @@ class Behave {
    * However, some standards attributes are the following: (email, name)
    * @return mixed The API response. It may contains unlocked rewards like badge, points, mission etc
    */
-  public static function identify($playerId, $traits = null) {
+  public static function identify($playerId, $traits = null, $timestamp = null) {
     return Behave::getClient()->identify(array(
-      'playerId' => $playerId,
-      'traits'   => $traits
+      'playerId'  => $playerId,
+      'traits'    => $traits,
+      'timestamp' => $timestamp
     ))->get('data');
   }
 
@@ -102,6 +103,23 @@ class Behave {
     return Behave::getClient()->fetchPlayerBadges(array(
       'playerId' => $playerId
     ))->get('data');
+  }
+
+  /**
+   * Create a new badge
+   *
+   * @param  string $name        The name of the badge
+   * @param  string $referenceId The unique custom id you want to use to identify this badge.
+   * @param  string $icon The URL pointing to the icon of the
+   * @param  mixed  $options badge options (optional)
+   * @return mixed  (badge) if success, string (error) if something went wrong
+   */
+  public static function createBadge($name, $referenceId, $icon, $options = array())
+  {
+    $options['name'] = $name;
+    $options['reference_id'] = $referenceId;
+    $options['icon'] = $icon;
+    return Behave::getClient()->createBadge($options)->get('data');
   }
 
   //////////////////////////////////////

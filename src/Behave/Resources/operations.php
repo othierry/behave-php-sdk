@@ -48,6 +48,11 @@ return array(
 					'location' => 'json',
 					'required' => false
 				),
+				'timestamp' => array(
+					'type' => 'integer',
+					'location' => 'json',
+					'required' => false
+				),
 			),
 		),
 
@@ -147,6 +152,60 @@ return array(
 					'location' => 'json',
 					'sentAs' => 'leaderboards',
 					'required' => true,
+				),
+			)
+		),
+
+		'createBadge' => array(
+			'httpMethod' => 'POST',
+			'uri' => 'badges',
+			'summary' => 'Create a new badge.',
+			'responseClass' => 'ObjectOutput',
+			'responseType' => 'model',
+			'class' => 'Behave\\Command\\TokenAuthCommand',
+			'parameters' => array(
+				'name' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => true,
+				),
+				'reference_id' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => true,
+				),
+				'icon' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => true,
+				),
+				'hint' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
+				),
+				'message' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
+				),
+				'limit' => array(
+					'type' => 'integer',
+					'location' => 'json',
+					'required' => true,
+					'default' => 0
+				),
+				'unique' => array(
+					'type' => 'boolean',
+					'location' => 'json',
+					'required' => true,
+					'default' => true
+				),
+				'active' => array(
+					'type' => 'boolean',
+					'location' => 'json',
+					'required' => true,
+					'default' => true
 				),
 			)
 		),
