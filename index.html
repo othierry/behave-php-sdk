@@ -151,7 +151,7 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 </tbody>
 </table><p>Example accessing <code>$bhResults-&gt;points</code> attribute.</p>
 
-<div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">points</span>
+<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span><span class="p">[</span><span class="s1">'points'</span><span class="p">]</span>
 <span class="p">{</span> 
   <span class="c1">// The number of points the user earned by taking the action</span>
   <span class="s1">'earned'</span>  <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> 
@@ -163,8 +163,7 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 
 <p>If not null <code>$bhResults-&gt;badge</code> contains the Badge that the user has just unlocked. The structure looks like this:</p>
 
-<div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">badge</span> 
-<span class="c1">// Example output</span>
+<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span><span class="p">[</span><span class="s1">'badge'</span><span class="p">]</span>
 <span class="p">{</span>
     <span class="c1">// Reward id</span>
     <span class="s2">"_id"</span>    <span class="o">=&gt;</span> <span class="s2">"52a01b67cc7df72c79000003"</span>
@@ -188,7 +187,7 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 
 <p>If not empty, <code>$bhResults-&gt;leaderboards</code> will contain something like this</p>
 
-<div class="highlight highlight-php"><pre><span class="k">echo</span> <span class="nv">$bhResults</span><span class="o">-&gt;</span><span class="na">leaderboards</span>
+<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span><span class="p">[</span><span class="s1">'leaderboards'</span><span class="p">]</span>
 <span class="p">[</span>
   <span class="p">{</span>
      <span class="c1">// The updated leaderboard</span>
