@@ -136,7 +136,7 @@ class Behave {
    */
   public static function fetchLeaderboardResultsForPlayer($playerId, $options = array()) {
     $options['playerId'] = $playerId;
-    return Behave::getClient()->fetchLeaderboardResultsForPlayer($options);
+    return Behave::getClient()->fetchLeaderboardResultsForPlayer($options)->get('data');
   }
 
   /**
@@ -239,7 +239,6 @@ class Behave {
    * @param  mixed $options  Leaderboard options (optional)
    */
   public static function iterateLeaderboardResults($leaderboardId, $iterator, $options = array()) {
-    Behave::raiseIfNotInitialized();
     $page    = array_key_exists('page', $options)  ? $options['page']  : 1;
     $limit   = array_key_exists('limit', $options) ? min($options['limit'], 1000) : 1000;
     $max_pos = array_key_exists('max', $options)   ? $options['max']   : 0;
@@ -269,7 +268,6 @@ class Behave {
    * @param  mixed    $options  Leaderboard options (optional)
    */
   public static function iterateLeaderboardPreviousResults($leaderboardId, $iterator, $options = array()) {
-    Behave::raiseIfNotInitialized();
     $page    = array_key_exists('page', $options)  ? $options['page']  : 1;
     $limit   = array_key_exists('limit', $options) ? min($options['limit'], 1000) : 1000;
     $max_pos = array_key_exists('max', $options)   ? $options['max']   : 0;
