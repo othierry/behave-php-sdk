@@ -65,7 +65,30 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <span class="p">));</span>
 </pre></div>
 
-<p>the returned Player has the following attributes</p>
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>playerId</td>
+<td align="center">String</td>
+<td align="right">The ID for this user in your database.</td>
+</tr>
+<tr>
+<td>traits</td>
+<td align="center">Object</td>
+<td align="right">(optional) The custom traits you assign to the player. You can use any key-value pair to give attributes to the player. The 2 special fields: <code>name</code> and <code>picture</code> will be used as display information from the admin interface. We recommend to specify them if you can.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td align="center">Number</td>
+<td align="right">(optional) A <strong>unix timestamp</strong> that tells when this identification happened. <strong>Make sure you specify a timestamp when importing data</strong>. We will use the server's current time by default.</td>
+</tr>
+</tbody>
+</table><p>the returned Player has the following attributes</p>
 
 <table>
 <thead><tr>
@@ -116,7 +139,30 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <span class="p">));</span>
 </pre></div>
 
-<h3>
+<table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>playerId</td>
+<td align="center">String</td>
+<td align="right">The ID for this user in your database.</td>
+</tr>
+<tr>
+<td>behaviour</td>
+<td align="center">String</td>
+<td align="right">The name of the behaviour you are tracking</td>
+</tr>
+<tr>
+<td>context</td>
+<td align="center">Object</td>
+<td align="right">(optional) You can specify ANY key value pairs to describe the context to which the behaviour was taken. Optionally, A special field <code>timestamp</code> <strong>(unix timestamp)</strong> defines when was this behaviour taken. <strong>Make sure you specify a timestamp when importing data</strong>. We will use the server's current time by default.</td>
+</tr>
+</tbody>
+</table><h3>
 <a name="tracking-results" class="anchor" href="#tracking-results"><span class="octicon octicon-link"></span></a>Tracking results</h3>
 
 <p>When you track a user behaviours using <code>Behave::track()</code> you get back a result object you can use. The result contains the actions that the tracking has triggered (from your <a href="http://dashboard.behave.io/recipes">recipes</a>).</p>
