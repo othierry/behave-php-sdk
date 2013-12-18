@@ -253,6 +253,12 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <td align="center">String</td>
 <td align="right">(Optional) The way positions are calculated. Possible values are <code>relative</code> and <code>absolute</code>. <code>relative</code> will set the positions according to the players that are included in the results, <code>absolute</code> will set the positions according to all the players in the leaderboards. This is useful when for example you want to fetch the results for a player and his friends only. In this situation you could pass <code>relative</code> so that the positions are computed between friends and not between all the players in the leaderboards.</td>
 </tr>
+<tr>
+<td>context</td>
+<td align="center">Object</td>
+<td align="right">(Optional) You can segment results according to a specific context. For example, on a leaderboard with <code>all-time</code> timeframe, if you want to get the results of weeks 42 only you could have <code>{ timestamp: '&gt;=1381701600,&lt;1382306400' }</code>. You can also use any custom key you have specified in the context when tracking behaviours using <code>track()</code>.  <strong>On large leaderboards this can have an impact on performances.</strong>
+</td>
+</tr>
 </tbody>
 </table><p>Results structure will look like this</p>
 
