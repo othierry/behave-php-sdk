@@ -1,5 +1,7 @@
 <?php
 
+namespace Behave;
+
 class Behave {
   /**
    * Version.
@@ -40,7 +42,7 @@ class Behave {
    * Designated initializer
    */
   public static function init($token) {
-    Behave::$client = Behave\Client::createClient(array('app_token' => $token));
+    Behave::$client = Client::createClient(array('app_token' => $token));
   }
 
   //////////////////////////////////////
