@@ -51,7 +51,7 @@ class Behave {
 
   public static function getClient() {
     if (!Behave::$client) {
-      throw new Exception('Behave::init() must be called with a valid app token for the client to be created');
+      throw new \Exception('Behave::init() must be called with a valid app token for the client to be created');
     }
     return Behave::$client;
   }
