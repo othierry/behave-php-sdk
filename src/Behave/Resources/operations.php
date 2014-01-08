@@ -252,8 +252,8 @@ return array(
 		),
 
 		'resetLeaderboard' => array(
-			'httpMethod' => 'GET',
-			'uri' => "leaderboards{/leaderboardId}",
+			'httpMethod' => 'DELETE',
+			'uri' => "leaderboards{/leaderboardId}/reset",
 			'summary' => 'Reset a leaderboard',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
 			'parameters' => array(
