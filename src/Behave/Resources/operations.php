@@ -107,6 +107,12 @@ return array(
 					'location' => 'json',
 					'required' => false,
 				),
+				'playerId' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
+					'sentAs' => 'player_id'
+				),
 				'positions' => array(
 					'type' => 'string',
 					'location' => 'json',
@@ -138,7 +144,7 @@ return array(
 				'max' => array(
 					'type' => 'integer',
 					'location' => 'json',
-					'required' => false,
+					'required' => false
 				)								
 			)
 		),
