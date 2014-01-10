@@ -149,7 +149,7 @@ class Behave {
    */
   public static function fetchLeaderboardResultForPlayer($leaderboardId, $playerId, $options = array()) {
     $options['leaderboards'] = array($leaderboardId);
-    $results = Behave::fetchLeaderboardResultsForPlayer($playerId, $options)->get('data');
+    $results = Behave::fetchLeaderboardResultsForPlayer($playerId, $options);
     // High-level filtering here we return the first element or null (if no score for that player on that leaderboard)
     // of the results array returned by the API so we do not need to do the check at the App level.
     return count($results) == 0 ? null : $results[0];
