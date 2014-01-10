@@ -249,6 +249,11 @@ return array(
 					'location' => 'json',
 					'false' => true,
 				),
+				'metadata' => array(
+					'type' => 'object',
+					'location' => 'json',
+					'false' => false,
+				),
 				'active' => array(
 					'type' => 'boolean',
 					'location' => 'json',
@@ -268,6 +273,55 @@ return array(
 					'location' => 'uri',
 					'required' => true,
 				)
+			)
+		),
+
+		'updateLeaderboard' => array(
+			'httpMethod' => 'PUT',
+			'uri' => "leaderboards{/leaderboardId}",
+			'summary' => 'Update a leaderboard',
+			'class' => 'Behave\\Command\\TokenAuthCommand',
+			'parameters' => array(
+				'leaderboardId' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true,
+				),
+				'name' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
+				),
+				'reference_id' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
+				),
+				'scoreType' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'false' => false,
+				),
+				'timeFrame' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'false' => false,
+				),
+				'rewards' => array(
+					'type' => 'array',
+					'location' => 'json',
+					'false' => false,
+				),
+				'metadata' => array(
+					'type' => 'object',
+					'location' => 'json',
+					'false' => false,
+				),
+				'active' => array(
+					'type' => 'boolean',
+					'location' => 'json',
+					'false' => false,
+				),
 			)
 		),
 
