@@ -44,7 +44,7 @@ The SDK also allows you to dynamically create and remove leaderboards, contests,
 
 <div class="highlight highlight-php"><pre><span class="k">require_once</span><span class="p">(</span><span class="s2">"/path/to/behave/Behave.php"</span><span class="p">);</span>
 
-<span class="nx">Behave</span><span class="o">::</span><span class="na">init</span><span class="p">(</span><span class="s2">"YOUR_API_SECRET);</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">init</span><span class="p">(</span><span class="s2">"YOUR_API_TOKEN"</span><span class="p">);</span>
 </pre></div>
 
 <h2>
@@ -180,9 +180,9 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 </tr></thead>
 <tbody>
 <tr>
-<td>badge</td>
-<td align="center">Object</td>
-<td align="right">The unlocked badge (if any, null otherwise)</td>
+<td>badges</td>
+<td align="center">Array[Object]</td>
+<td align="right">The unlocked badges</td>
 </tr>
 <tr>
 <td>points</td>
@@ -207,10 +207,11 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <span class="p">}</span>
 </pre></div>
 
-<p>If not null <code>$bhResults-&gt;badge</code> contains the Badge that the user has just unlocked. The structure looks like this:</p>
+<p>If not null <code>$bhResults-&gt;badges</code> contains the Badges that the user has just unlocked. The structure looks like this:</p>
 
-<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span><span class="p">[</span><span class="s1">'badge'</span><span class="p">]</span>
-<span class="p">{</span>
+<div class="highlight highlight-php"><pre><span class="nv">$bhResults</span><span class="p">[</span><span class="s1">'badges'</span><span class="p">]</span>
+<span class="p">[</span>
+  <span class="p">{</span>
     <span class="c1">// Reward id</span>
     <span class="s2">"_id"</span>    <span class="o">=&gt;</span> <span class="s2">"52a01b67cc7df72c79000003"</span>
     <span class="c1">// Number of times this reward was earned by this player</span>
@@ -228,7 +229,7 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
       <span class="c1">// badge unlock message</span>
       <span class="s2">"message"</span>      <span class="o">=&gt;</span> <span class="s2">"Whooa! Look like you are new in da place. keep the effort and you will be rewarded."</span>
     <span class="p">}</span>
-  <span class="p">}</span>
+  <span class="p">]</span>
 </pre></div>
 
 <p>If not empty, <code>$bhResults-&gt;leaderboards</code> will contain something like this</p>
@@ -253,6 +254,8 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 
 <h2>
 <a name="leaderboards" class="anchor" href="#leaderboards"><span class="octicon octicon-link"></span></a>Leaderboards</h2>
+
+<p><strong>Note:</strong> If you want to test you leaderboard results, you can directly use <a href="http://dashboard.behave.io/#/simulator">the built-in simulator</a> to test API calls.</p>
 
 <h3>
 <a name="getting-leaderboard-current-results" class="anchor" href="#getting-leaderboard-current-results"><span class="octicon octicon-link"></span></a>Getting leaderboard current results</h3>
@@ -289,9 +292,14 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <td align="right">(Optional) The maximum position to fetch, default is 0 =&gt; None</td>
 </tr>
 <tr>
-<td>players</td>
-<td align="center">Array[String]</td>
-<td align="right">(Optional) The players to include in the results, default is null =&gt; ALL</td>
+<td>player_id</td>
+<td align="center">String</td>
+<td align="right">A player's reference_id (Optional). If specified, the given player will ALWAYS appear in the results (not duplicated). It is very useful if for example you want to always include the current player in the results</td>
+</tr>
+<tr>
+<td>Array[String]</td>
+<td align="center">(Optional) The players to include in the results, default is null =&gt; ALL</td>
+<td align="right"></td>
 </tr>
 <tr>
 <td>positions</td>
@@ -463,14 +471,18 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <h3>
 <a name="creating-a-leaderboard" class="anchor" href="#creating-a-leaderboard"><span class="octicon octicon-link"></span></a>Creating a leaderboard</h3>
 
-<p>In case your app needs to dynamically create leaderboards. You can use the SDK to create or remove leaderboards.</p>
+<p><strong>Note:</strong> You can manage your leaderboards directly <a href="http://dashboard.behave.io/#/leaderboards">from the dashboard</a>. In case your app needs to dynamically create leaderboards. You can use the SDK to create or remove leaderboards.</p>
 
 <div class="highlight highlight-php"><pre><span class="c1">// influencers-lb is the reference_id we want to use</span>
 <span class="nx">Behave</span><span class="o">::</span><span class="na">createLeaderboard</span><span class="p">(</span><span class="s1">'Influencers'</span><span class="p">,</span> <span class="s1">'influencers-lb'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_BEHAVIOURAL</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_SUM</span><span class="p">,</span>
   <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_WEEKLY</span><span class="p">,</span>
-  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults</span>
+  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults,</span>
+  <span class="s1">'metadata'</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="c1">// Optional</span>
+    <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span>
+    <span class="s1">'custom_data'</span> <span class="o">=&gt;</span> <span class="s1">'goes here'</span>
+  <span class="p">)</span>
 <span class="p">));</span>
 
 <span class="c1">// Another example</span>
@@ -478,7 +490,11 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
   <span class="s1">'type'</span>         <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TYPE_SCORE</span><span class="p">,</span>
   <span class="s1">'scoreType'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_SCORE_MAX</span><span class="p">,</span>
   <span class="s1">'timeFrame'</span>    <span class="o">=&gt;</span> <span class="nx">Behave</span><span class="o">::</span><span class="na">LEADERBOARD_TIME_ALLTIME</span><span class="p">,</span>
-  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults</span>
+  <span class="s1">'active'</span>       <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// Defaults,</span>
+  <span class="s1">'metadata'</span>     <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span> <span class="c1">// Optional</span>
+    <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span><span class="p">,</span>
+    <span class="s1">'custom_data'</span> <span class="o">=&gt;</span> <span class="s1">'goes here'</span>
+  <span class="p">)</span>
 <span class="p">));</span>
 </pre></div>
 
@@ -512,7 +528,12 @@ If you call <code>identify()</code> multiple times with the same user id, the ex
 <tr>
 <td>rewards</td>
 <td align="center">Array[Object]</td>
-<td align="right">Rewards for that leaderboard. See bellow for example</td>
+<td align="right">Rewards for that leaderboard. See bellow for example. (Optional)</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td align="center">Object</td>
+<td align="right">Metadata are used if you want to keep track of some application-logic related data. (Optional)</td>
 </tr>
 <tr>
 <td>active</td>
@@ -538,17 +559,6 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
   <span class="p">),</span>
 <span class="p">));</span>
 </pre></div>
-
-<h3>
-<a name="reset-a-leaderboard" class="anchor" href="#reset-a-leaderboard"><span class="octicon octicon-link"></span></a>Reset a leaderboard</h3>
-
-<p>If a leaderboard's time frame is <code>Behave::LEADERBOARD_TIME_ALLTIME</code> you can manually reset it. 
-When you reset a leaderboard, the previous results are archived and are available using <code>Behave::fetchLeaderboardPreviousResults()</code> or <code>Behave::iterateLeaderboardResults()</code>.</p>
-
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">resetLeaderboard</span><span class="p">(</span><span class="s1">'game-level-42-lb'</span><span class="p">);</span>
-</pre></div>
-
-<p><strong>Note</strong>: Calling <code>Behave::resetLeaderboard()</code> on a leaderboard with a time frame different than <code>Behave::LEADERBOARD_TIME_ALLTIME</code> will throw an error.</p>
 
 <h3>
 <a name="deleting-a-leaderboard" class="anchor" href="#deleting-a-leaderboard"><span class="octicon octicon-link"></span></a>Deleting a leaderboard</h3>
