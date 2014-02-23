@@ -43,6 +43,7 @@ class Behave {
    */
   public static function init($token) {
     Behave::$client = Client::createClient(array('app_token' => $token));
+    // Behave::$client->getConfig()->set('curl.options', array(CURLOPT_VERBOSE, true));
   }
 
   //////////////////////////////////////
@@ -168,21 +169,6 @@ class Behave {
     $options['name'] = $name;
     $options['reference_id'] = $referenceId;
     return Behave::getClient()->createLeaderboard($options);
-  }
-
-  /**
-   * Reset a leaderboard. This CANNOT be undone. Previous results will be archived.
-   * Only leaderboard with all-time timeframe can be reset manually
-   *
-   * @param $leaderboardIdOrRefId string The leaderboard id. It can either be the actual leaderboard id
-   * in behave's database but also the distinct id you have defined when creating the leaderboard.
-   * We will fetch the leaderboard in that order: Find by distinct id (if defined) > Find by id
-   * @return null if success, error string if something went wrong
-   */
-  public static function resetLeaderboard($leaderboardIdOrRefId) {
-    return Behave::getClient()->resetLeaderboard(array(
-      'leaderboardId' => $leaderboardIdOrRefId,
-    ));
   }
 
   /**

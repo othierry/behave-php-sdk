@@ -5,7 +5,7 @@ return array(
 	'operations' => array(		
 		'track' => array(
 			'httpMethod' => 'POST',
-			'uri' => "players{/playerId}/track",
+			'uri' => "players/{playerId}/track",
 			'summary' => 'Track a behaviour',
 			'responseClass' => 'ObjectOutput',
 			'responseType' => 'model',
@@ -32,7 +32,7 @@ return array(
 		
 		'identify' => array(
 			'httpMethod' => 'POST',
-			'uri' => "players{/playerId}/identify",
+			'uri' => "players/{playerId}/identify",
 			'summary' => 'Identify a user',
 			'responseClass' => 'ObjectOutput',
 			'responseType' => 'model',
@@ -58,7 +58,7 @@ return array(
 
 		'fetchPlayerBadges' => array(
 			'httpMethod' => 'GET',
-			'uri' => "players{/playerId}/badges",
+			'uri' => "players/{playerId}/badges",
 			'summary' => 'Fetch player\'s unlocked badges',
 			'responseClass' => 'ArrayOutput',
 			'responseType' => 'model',
@@ -74,7 +74,7 @@ return array(
 
 		'fetchLeaderboardResults' => array(
 			'httpMethod' => 'POST',
-			'uri' => "leaderboards{/leaderboardId}/results{?offset}{&limit}",
+			'uri' => "leaderboards/{leaderboardId}/results{?offset}{&limit}",
 			'summary' => 'Fetch Leaderboard Results',
 			'responseClass' => 'ArrayOutput',
 			'responseType' => 'model',
@@ -262,23 +262,9 @@ return array(
 			)
 		),
 
-		'resetLeaderboard' => array(
-			'httpMethod' => 'DELETE',
-			'uri' => "leaderboards{/leaderboardId}/reset",
-			'summary' => 'Reset a leaderboard',
-			'class' => 'Behave\\Command\\TokenAuthCommand',			
-			'parameters' => array(
-				'leaderboardId' => array(
-					'type' => 'string',
-					'location' => 'uri',
-					'required' => true,
-				)
-			)
-		),
-
 		'updateLeaderboard' => array(
 			'httpMethod' => 'PUT',
-			'uri' => "leaderboards{/leaderboardId}",
+			'uri' => "leaderboards/{leaderboardId}",
 			'summary' => 'Update a leaderboard',
 			'class' => 'Behave\\Command\\TokenAuthCommand',
 			'parameters' => array(
@@ -327,7 +313,7 @@ return array(
 
 		'deleteLeaderboard' => array(
 			'httpMethod' => 'DELETE',
-			'uri' => "leaderboards{/leaderboardId}",
+			'uri' => "leaderboards/{leaderboardId}",
 			'summary' => 'Delete a leaderboard',
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
 			'parameters' => array(
