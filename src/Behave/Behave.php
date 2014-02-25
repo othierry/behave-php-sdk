@@ -94,6 +94,37 @@ class Behave {
     ))->get('data');
   }
 
+
+  /**
+   * Add Social Identity to the player (Facebook, Twitter, Yammer, ...)
+   *
+   * @param $playerId string The player's reference_id
+   * @param $reference_id string The id of the user in the provider's database
+   * @param $provider string the key of the social network/service ("facebook", "twitter", "yammer")
+   * @return mixed The updated player's identities or an error
+   */
+  public static function addPlayerIdentity($playerId, $referenceId, $provider) {
+    return Behave::getClient()->addPlayerIdentity(array(
+      'playerId' => $playerId,
+      'referenceId' => $referenceId,
+      'provider' => $provider
+    ));
+  }
+
+  /**
+   * Remove Social Identity from the player (Facebook, Twitter, Yammer, ...)
+   *
+   * @param $playerId string The player's reference_id
+   * @param $provider string the key of the social network/service ("facebook", "twitter", "yammer")
+   * @return Nothing (200) if OK otherwise the thrown error
+   */
+  public static function removePlayerIdentity($playerId, $provider) {
+    return Behave::getClient()->removePlayerIdentity(array(
+      'playerId' => $playerId,
+      'provider' => $provider
+    ));
+  }
+
   //////////////////////////////////////
   /// API Badges helpers             ///
   //////////////////////////////////////

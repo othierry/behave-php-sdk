@@ -56,6 +56,52 @@ return array(
 			),
 		),
 
+		'addPlayerIdentity' => array(
+			'httpMethod' => 'POST',
+			'uri' => "players/{playerId}/identities",
+			'summary' => 'Add external identity to the player like facebook, twitter, yamer, ...',
+			'responseClass' => 'ObjectOutput',
+			'responseType' => 'model',
+			'class' => 'Behave\\Command\\TokenAuthCommand',
+			'parameters' => array(
+				'playerId' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true
+				),
+				'referenceId' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => true,
+					'sentAs' => 'reference_id'
+				),
+				'provider' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => true
+				)
+			),
+		),
+
+		'removePlayerIdentity' => array(
+			'httpMethod' => 'DELETE',
+			'uri' => "players/{playerId}/identities/{provider}",
+			'summary' => 'Add external identity to the player like facebook, twitter, yamer, ...',
+			'class' => 'Behave\\Command\\TokenAuthCommand',
+			'parameters' => array(
+				'playerId' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true
+				),
+				'provider' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true
+				)
+			),
+		),
+
 		'fetchPlayerBadges' => array(
 			'httpMethod' => 'GET',
 			'uri' => "players/{playerId}/badges",
