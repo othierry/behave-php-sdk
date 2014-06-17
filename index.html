@@ -993,6 +993,79 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
 <p><strong>Note:</strong> You can manage your badges directly <a href="http://dashboard.behave.io/#/badges">from the dashboard</a>. In case your app needs to dynamically create badges you can use the API to do so.</p>
 
+<ul>
+<li>
+<strong>Method:</strong> POST</li>
+<li>
+<strong>Endpoint:</strong> /badges</li>
+<li><strong>Parameters:</strong></li>
+</ul><table>
+<thead><tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>name</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Required)</strong> The name of the badge</td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Required)</strong> The reference_id or id of the badge</td>
+</tr>
+<tr>
+<td>icon</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Required)</strong> The url to the badge icon image (e.g: <a href="http://path-to-image.png">http://path-to-image.png</a>)</td>
+</tr>
+<tr>
+<td>message</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Optional)</strong> The congratulation message for unlocking the badge</td>
+</tr>
+<tr>
+<td>hint</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Optional)</strong> The hint for how to unlock the badge (e.g: <a href="http://path-to-image.png">http://path-to-image.png</a>)</td>
+</tr>
+<tr>
+<td>unique</td>
+<td align="center">Boolean</td>
+<td align="right">
+<strong>(Optional)</strong> Default to true. Can this badge be unlocked only once per player?</td>
+</tr>
+<tr>
+<td>limit</td>
+<td align="center">Integer</td>
+<td align="right">
+<strong>(Optional)</strong> Default to 0 (infinity). How many times can this badge be unlocked?</td>
+</tr>
+<tr>
+<td>active</td>
+<td align="center">Boolean</td>
+<td align="right">
+<strong>(Optional)</strong> Default to true. Can this badge be unlocked now</td>
+</tr>
+</tbody>
+</table><p>Example:</p>
+
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createBadge</span><span class="p">(</span><span class="s2">"My cool Badge"</span><span class="p">,</span> <span class="s2">"my-cool-badge"</span><span class="p">,</span> <span class="s2">"http://icon.png"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+  <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'The congratulation message'</span><span class="p">,</span>
+  <span class="s1">'hint'</span>    <span class="o">=&gt;</span> <span class="s1">'How to unlock this badge?'</span><span class="p">,</span>
+  <span class="s1">'limit'</span>   <span class="o">=&gt;</span> <span class="mi">42</span><span class="p">,</span>  <span class="c1">// Only 42 available,</span>
+  <span class="s1">'unique'</span>  <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// The default</span>
+  <span class="s1">'active'</span>  <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// The default</span>
+<span class="p">));</span>
+</pre></div>
+
 <h3>
 <a name="deleting-a-badge" class="anchor" href="#deleting-a-badge"><span class="octicon octicon-link"></span></a>Deleting a Badge</h3>
 
@@ -1016,7 +1089,7 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 </tr></tbody>
 </table><p>Example:</p>
 
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">deleteBadge</span><span class="p">(</span><span class="s2">"my-awesome-badge"</span><span class="p">);</span>
+<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">deleteBadge</span><span class="p">(</span><span class="s2">"my-cool-badge"</span><span class="p">);</span>
 </pre></div>
       </section>
       <footer>
