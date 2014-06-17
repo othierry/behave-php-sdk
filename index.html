@@ -727,17 +727,17 @@ If you identify a user multiple times with the same id, the existing player will
 <tr>
 <td>rewards</td>
 <td align="center">Array[Object]</td>
-<td align="right">Rewards for that leaderboard. See bellow for example. (Optional)</td>
+<td align="right">(Optional) Rewards for that leaderboard. See bellow for example.</td>
 </tr>
 <tr>
 <td>metadata</td>
 <td align="center">Object</td>
-<td align="right">Metadata are used if you want to keep track of some application-logic related data. (Optional)</td>
+<td align="right">(Optional) Metadata are used if you want to keep track of some application-logic related data. (Optional)</td>
 </tr>
 <tr>
 <td>active</td>
 <td align="center">Boolean</td>
-<td align="right">Is the leaderboard active? Default to true</td>
+<td align="right">(Optional) Is the leaderboard active? Default to true</td>
 </tr>
 </tbody>
 </table><p>Example:</p>
@@ -1049,6 +1049,12 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 <strong>(Optional)</strong> Default to 0 (infinity). How many times can this badge be unlocked?</td>
 </tr>
 <tr>
+<td>metadata</td>
+<td align="center">Object</td>
+<td align="right">
+<strong>(Optional)</strong> Metadata are used if you want to keep track of some application-logic related data. (Optional)</td>
+</tr>
+<tr>
 <td>active</td>
 <td align="center">Boolean</td>
 <td align="right">
@@ -1058,11 +1064,14 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 </table><p>Example:</p>
 
 <div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">createBadge</span><span class="p">(</span><span class="s2">"My cool Badge"</span><span class="p">,</span> <span class="s2">"my-cool-badge"</span><span class="p">,</span> <span class="s2">"http://icon.png"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="s1">'message'</span> <span class="o">=&gt;</span> <span class="s1">'The congratulation message'</span><span class="p">,</span>
-  <span class="s1">'hint'</span>    <span class="o">=&gt;</span> <span class="s1">'How to unlock this badge?'</span><span class="p">,</span>
-  <span class="s1">'limit'</span>   <span class="o">=&gt;</span> <span class="mi">42</span><span class="p">,</span>  <span class="c1">// Only 42 available,</span>
-  <span class="s1">'unique'</span>  <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// The default</span>
-  <span class="s1">'active'</span>  <span class="o">=&gt;</span> <span class="k">true</span> <span class="c1">// The default</span>
+  <span class="s1">'message'</span>  <span class="o">=&gt;</span> <span class="s1">'The congratulation message'</span><span class="p">,</span>
+  <span class="s1">'hint'</span>     <span class="o">=&gt;</span> <span class="s1">'How to unlock this badge?'</span><span class="p">,</span>
+  <span class="s1">'limit'</span>    <span class="o">=&gt;</span> <span class="mi">42</span><span class="p">,</span>   <span class="c1">// Only 42 available,</span>
+  <span class="s1">'unique'</span>   <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// The default</span>
+  <span class="s1">'active'</span>   <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// The default</span>
+  <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'foo'</span> <span class="o">=&gt;</span> <span class="s1">'bar'</span>
+  <span class="p">)</span>
 <span class="p">));</span>
 </pre></div>
 
