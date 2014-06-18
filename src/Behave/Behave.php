@@ -156,6 +156,20 @@ class Behave {
     return Behave::getClient()->createBadge($options);
   }
 
+  /**
+   * Delete a  badge
+   *
+   * @param $badgeIdOrRefId string The badge id. It can either be the actual leaderboard id
+   * in behave's database but also the distinct id you have defined when creating the leaderboard.
+   * We will fetch the badge in that order: Find by distinct id (if defined) then fallback and Find by id
+   */
+  public static function deleteBadge($badgeIdOrRefId)
+  {
+    return Behave::getClient()->deleteBadge(array(
+      'badgeId' => $badgeIdOrRefId
+    ));
+  }
+
   //////////////////////////////////////
   /// API Leaderboards helpers       ///
   //////////////////////////////////////

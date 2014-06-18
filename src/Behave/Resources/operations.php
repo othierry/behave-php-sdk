@@ -253,12 +253,17 @@ return array(
 					'required' => true,
 					'default' => true
 				),
+				'metadata' => array(
+					'type' => 'object',
+					'location' => 'json',
+					'required' => false,
+				),
 				'active' => array(
 					'type' => 'boolean',
 					'location' => 'json',
 					'required' => true,
 					'default' => true
-				),
+				)
 			)
 		),
 
@@ -332,27 +337,27 @@ return array(
 				'scoreType' => array(
 					'type' => 'string',
 					'location' => 'json',
-					'false' => false,
+					'required' => false,
 				),
 				'timeFrame' => array(
 					'type' => 'string',
 					'location' => 'json',
-					'false' => false,
+					'required' => false,
 				),
 				'rewards' => array(
 					'type' => 'array',
 					'location' => 'json',
-					'false' => false,
+					'required' => false,
 				),
 				'metadata' => array(
 					'type' => 'object',
 					'location' => 'json',
-					'false' => false,
+					'required' => false,
 				),
 				'active' => array(
 					'type' => 'boolean',
 					'location' => 'json',
-					'false' => false,
+					'required' => false,
 				),
 			)
 		),
@@ -364,6 +369,20 @@ return array(
 			'class' => 'Behave\\Command\\TokenAuthCommand',			
 			'parameters' => array(
 				'leaderboardId' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true,
+				)
+			)
+		),
+
+		'deleteBadge' => array(
+			'httpMethod' => 'DELETE',
+			'uri' => "badges/{badgeId}",
+			'summary' => 'Delete a badge',
+			'class' => 'Behave\\Command\\TokenAuthCommand',			
+			'parameters' => array(
+				'badgeId' => array(
 					'type' => 'string',
 					'location' => 'uri',
 					'required' => true,
