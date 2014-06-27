@@ -131,6 +131,7 @@ class Behave {
 
   /**
    * @param $playerId string The player we need to fetch badges from
+   * @param $groups array The list of groups to fetch badges from
    * @return array The current player's COMPLETED badges.
    */
   public static function fetchPlayerBadges($playerId, $groups = null) {
@@ -145,6 +146,7 @@ class Behave {
 
   /**
    * @param $playerId string The player we need to fetch badges from
+   * @param $groups array The list of groups to fetch badges from
    * @return array The current player's LOCKED badges.
    */
   public static function fetchPlayerLockedBadges($playerId, $groups = null) {
