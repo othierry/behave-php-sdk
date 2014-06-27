@@ -819,15 +819,27 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 <th align="center">Type</th>
 <th align="right">Value</th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>player_id</td>
 <td align="center">String</td>
 <td align="right">
 <strong>(Required)</strong> The player to fetch unlocked badges from</td>
-</tr></tbody>
+</tr>
+<tr>
+<td>groups</td>
+<td align="center">Array</td>
+<td align="right">
+<strong>(Optional)</strong> The list of badge groups to fetch from. When passed in URL as query parameter, the value comma-separated list of groups (e.g: .../badges?groups=social,achievement)</td>
+</tr>
+</tbody>
 </table><p>Example:</p>
 
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">);</span>
+<div class="highlight highlight-php"><pre><span class="c1">// Fetch all badges</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">);</span>
+<span class="c1">// OR</span>
+<span class="c1">// Fetch badges in "social" and "achievement" groups</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s2">"social"</span><span class="p">,</span> <span class="s2">"achievement"</span><span class="p">));</span>
 
 <span class="c1">// Example Response</span>
 <span class="p">{</span>
@@ -855,6 +867,12 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
         <span class="c1"># Current app</span>
         <span class="s2">"app_id"</span><span class="o">:</span> <span class="s2">"52b0f1d32e2ce4e91100000c"</span><span class="p">,</span>
+
+        <span class="c1"># Badge group</span>
+        <span class="s2">"group"</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">_id</span><span class="o">:</span> <span class="s2">"3213902184908134909034"</span><span class="p">,</span>
+          <span class="nx">name</span><span class="o">:</span> <span class="s2">"social"</span>
+        <span class="p">},</span>
 
         <span class="c1"># Badge Hint</span>
         <span class="s2">"hint"</span><span class="o">:</span> <span class="s2">"Trouvez 1 mot en moins de 7 secondes."</span><span class="p">,</span>
@@ -917,15 +935,27 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 <th align="center">Type</th>
 <th align="right">Value</th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>player_id</td>
 <td align="center">String</td>
 <td align="right">
 <strong>(Required)</strong> The player to fetch unlocked badges from</td>
-</tr></tbody>
+</tr>
+<tr>
+<td>groups</td>
+<td align="center">Array</td>
+<td align="right">
+<strong>(Optional)</strong> The list of badge groups to fetch from. When passed in URL as query parameter, the value comma-separated list of groups (e.g: .../badges?groups=social,achievement)</td>
+</tr>
+</tbody>
 </table><p>Example:</p>
 
-<div class="highlight highlight-php"><pre><span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerLockedBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">);</span>
+<div class="highlight highlight-php"><pre><span class="c1">// Fetch all locked badges</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerLockedBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">);</span>
+<span class="c1">// OR</span>
+<span class="c1">// Fetch locked badges in "social" and "achievement" groups</span>
+<span class="nx">Behave</span><span class="o">::</span><span class="na">fetchPlayerLockedBadges</span><span class="p">(</span><span class="s2">"42"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s2">"social"</span><span class="p">,</span> <span class="s2">"achievement"</span><span class="p">));</span>
 
 <span class="c1">// Example Response</span>
 <span class="p">{</span>
@@ -936,6 +966,12 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 
       <span class="c1"># Current app id</span>
       <span class="s2">"app_id"</span><span class="o">:</span> <span class="s2">"52b0f1d32e2ce4e91100000c"</span><span class="p">,</span>
+
+      <span class="c1"># Badge group</span>
+      <span class="s2">"group"</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">_id</span><span class="o">:</span> <span class="s2">"3213902184908134909034"</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">"social"</span>
+      <span class="p">},</span>
 
       <span class="c1"># Badge Hint</span>
       <span class="s2">"hint"</span><span class="o">:</span> <span class="s2">"Watch a video trailer in the shop"</span><span class="p">,</span>
@@ -1023,6 +1059,12 @@ Rewards are Badges. Each reward defines the position in the leaderboard to who t
 <td align="center">String</td>
 <td align="right">
 <strong>(Required)</strong> The url to the badge icon image (e.g: <a href="http://path-to-image.png">http://path-to-image.png</a>)</td>
+</tr>
+<tr>
+<td>group</td>
+<td align="center">String</td>
+<td align="right">
+<strong>(Optional)</strong> The name or id of the group. If the group doesn't exists it will be created automatically</td>
 </tr>
 <tr>
 <td>message</td>
