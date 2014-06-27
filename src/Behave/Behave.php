@@ -131,12 +131,29 @@ class Behave {
 
   /**
    * @param $playerId string The player we need to fetch badges from
-   * @return mixed The current player's COMPLETED badges.
+   * @return array The current player's COMPLETED badges.
    */
-  public static function fetchPlayerBadges($playerId) {
-    return Behave::getClient()->fetchPlayerBadges(array(
-      'playerId' => $playerId
-    ))->get('data');
+  public static function fetchPlayerBadges($playerId, $groups = null) {
+    $options = array();
+    $options["playerId"] = $playerId;
+    if ($groups != null) {
+      $options["groups"] = join(",", $groups);
+    }
+    return Behave::getClient()->fetchPlayerBadges($options)->get('data');
+  }
+
+
+  /**
+   * @param $playerId string The player we need to fetch badges from
+   * @return array The current player's LOCKED badges.
+   */
+  public static function fetchPlayerLockedBadges($playerId, $groups = null) {
+    $options = array();
+    $options["playerId"] = $playerId;
+    if ($groups != null) {
+      $options["groups"] = join(",", $groups);
+    }
+    return Behave::getClient()->fetchPlayerLockedBadges($options)->get('data');
   }
 
   /**

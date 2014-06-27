@@ -114,6 +114,32 @@ return array(
 					'type' => 'string',
 					'location' => 'uri',
 					'required' => true					
+				),
+				'groups' => array(
+					'type' => 'string',
+					'location' => 'query',
+					'required' => false
+				)
+			),
+		),
+
+		'fetchPlayerLockedBadges' => array(
+			'httpMethod' => 'GET',
+			'uri' => "players/{playerId}/badges/todo",
+			'summary' => 'Fetch player\'s locked badges',
+			'responseClass' => 'ArrayOutput',
+			'responseType' => 'model',
+			'class' => 'Behave\\Command\\TokenAuthCommand',
+			'parameters' => array(
+				'playerId' => array(
+					'type' => 'string',
+					'location' => 'uri',
+					'required' => true
+				),
+				'groups' => array(
+					'type' => 'string',
+					'location' => 'query',
+					'required' => false
 				)
 			),
 		),
@@ -225,6 +251,11 @@ return array(
 					'type' => 'string',
 					'location' => 'json',
 					'required' => true,
+				),
+				'group' => array(
+					'type' => 'string',
+					'location' => 'json',
+					'required' => false,
 				),
 				'icon' => array(
 					'type' => 'string',
